@@ -40,8 +40,9 @@ Two publics APIs was used in this problem:
 ```
 	npm run dev
 ```
-### endpoint: http://{HOST}/recipes/?i={ingredient_1},{ingredient_2}
-### example: localhost:3333/recipes?i=hot sauce,onions,garlic
+endpoint: `http://{HOST}/recipes/?i={ingredient_1},{ingredient_2}`
+
+example: `localhost:3333/recipes?i=hot sauce,onions,garlic`
 
 ## Docker
 - To create the Docker image, you can run:
@@ -52,8 +53,9 @@ Two publics APIs was used in this problem:
 ```
 	docker run -dp 3333:3333 challenge
 ```
-### endpoint: http://{HOST}/recipes/?i={ingredient_1},{ingredient_2}
-### example: localhost:3333/recipes?i=hot sauce,onions,garlic
+endpoint: `http://{HOST}/recipes/?i={ingredient_1},{ingredient_2}`
+
+example: `localhost:3333/recipes?i=hot sauce,onions,garlic`
 
 ## Reponse example
 
@@ -93,10 +95,10 @@ Two publics APIs was used in this problem:
 }
 ```
 
-# Collection
-## Import the [Collection] (https://www.getpostman.com/collections/dbb153f9524ce0fb5e7d) from [Postman] to make an example request to API.
+## Collection
+- Import the [Collection] (https://www.getpostman.com/collections/dbb153f9524ce0fb5e7d) from [Postman] to make an example request to API.
 
-# Contact
+## Contact
 samuellfa3@gmail.com
 
 ### Thank you and best regards 👨‍💻

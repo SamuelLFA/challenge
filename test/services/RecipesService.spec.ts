@@ -6,7 +6,7 @@ import RecipeMocks from '../mocks/RecipeMock';
 import RecipePuppyMock from '../mocks/RecipePuppyMock';
 
 describe('Recipes Service', () => {
-  const recipes = RecipeMocks.recipes;
+  const recipes = RecipeMocks.recipesWithNoGif;
   const mockResponse = {
     data: {
       results: RecipePuppyMock

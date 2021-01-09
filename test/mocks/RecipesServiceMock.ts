@@ -11,6 +11,6 @@ export default class RecipeServiceMock extends RecipeService {
   }
 
   async getRecipes(_: Array<String>): Promise<Array<Recipe>> {
-    return Promise.resolve(RecipeMocks.recipes);
+    return Promise.resolve(RecipeMocks.recipesWithNoGif);
   }
 }

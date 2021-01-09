@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios';
 
-import settings from '../config/Settings';
-import IRecipe from '../models/Recipe';
+import Settings from '../config/Settings';
+import Recipe from '../models/Recipe';
 
 interface IRecipePuppy {
     title: String,
@@ -17,15 +17,15 @@ export default class RecipeService {
         this.http = http;
     }
 
-    async getRecipes(listOfIngredients: Array<String>): Promise<Array<IRecipe>> {
+    async getRecipes(listOfIngredients: Array<String>): Promise<Array<Recipe>> {
         const params = {
             i: listOfIngredients.join(','),
             p: 1
         }
 
-        const response = await this.http.get(settings.recipePuppyApiURL, { params });
+        const response = await this.http.get(Settings.recipePuppyApiURL, { params });
 
-        const recipes = response.data.results.map((recipe: IRecipePuppy): IRecipe => (
+        const recipes = response.data.results.map((recipe: IRecipePuppy): Recipe => (
             {
                 title: recipe.title,
                 ingredients: recipe.ingredients,

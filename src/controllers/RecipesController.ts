@@ -24,11 +24,6 @@ export default class RecipeController {
   
       const listOfRecipes = await this.recipeService.getRecipes(listOfIngredients);
   
-      if (!listOfRecipes) {
-        response.status(400).json({ error: true });
-        return;
-      }
-  
       const listOfRecipesWithGif = await this.gifService.getListOfRecipesWithGit(listOfRecipes);
   
       response.status(200).json(
@@ -39,6 +34,14 @@ export default class RecipeController {
       );
     }
     catch (err) {
+      if (err.message === 'SERVICE UNAVAILABLE') {
+        response.status(503).json(
+          {
+            error: 'Service unavailable'
+          }
+        );
+        return;
+      }
       response.status(500).json(
         {
           error: 'Internal server error'

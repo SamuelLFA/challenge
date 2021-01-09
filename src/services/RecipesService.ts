@@ -10,7 +10,7 @@ interface IRecipePuppy {
     thumbnail: String
 }
 
-export default class RecipeService {
+export default class RecipesService {
     private http: AxiosInstance;
 
     constructor(http: AxiosInstance) {
@@ -18,22 +18,26 @@ export default class RecipeService {
     }
 
     async getRecipes(listOfIngredients: Array<String>): Promise<Array<Recipe>> {
-        const params = {
-            i: listOfIngredients.join(','),
-            p: 1
-        }
-
-        const response = await this.http.get(Settings.recipePuppyApiURL, { params });
-
-        const recipes = response.data.results.map((recipe: IRecipePuppy): Recipe => (
-            {
-                title: recipe.title,
-                ingredients: recipe.ingredients,
-                link: recipe.href,
-                gif: null
+        try {
+            const params = {
+                i: listOfIngredients.join(','),
+                p: 1
             }
-        ));
 
-        return recipes;
+            const response = await this.http.get(Settings.recipePuppyApiURL, { params });
+
+            const recipes = response.data.results.map((recipe: IRecipePuppy): Recipe => (
+                {
+                    title: recipe.title,
+                    ingredients: recipe.ingredients,
+                    link: recipe.href,
+                    gif: null
+                }
+            ));
+
+            return recipes;
+        } catch (error) {
+            throw new Error('SERVICE UNAVAILABLE');
+        }
     }
 }

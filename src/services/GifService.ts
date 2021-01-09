@@ -11,12 +11,16 @@ export default class GifService {
     }
 
     async getListOfRecipesWithGit(listOfRecipes: Array<Recipe>): Promise<Array<Recipe>> {
-        const getGifPromisse = async (recipe: Recipe): Promise<String> => await this.getGif(recipe.title);
+        try {
+            const getGifPromisse = async (recipe: Recipe): Promise<String> => await this.getGif(recipe.title);
 
-        const listOfGifPromisses = listOfRecipes.map(recipe => getGifPromisse(recipe));
-        const listOfGifs = await Promise.all(listOfGifPromisses);
-
-        return this.recipesWithGif(listOfGifs, listOfRecipes);
+            const listOfGifPromisses = listOfRecipes.map(recipe => getGifPromisse(recipe));
+            const listOfGifs = await Promise.all(listOfGifPromisses);
+    
+            return this.recipesWithGif(listOfGifs, listOfRecipes);
+        } catch (error) {
+            throw new Error('SERVICE UNAVAILABLE');
+        }
     }
 
     async getGif(title: String): Promise<String> {

@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 
 import QueryValidator from '../../src/middlewares/QueryValidator';
 import UtilsMocks from '../mocks/UtilsMock';
-import RecipeMocks from '../mocks/RecipeMock';
 
 describe('Query Validator', () => {
   const res = UtilsMocks.mockResponse();

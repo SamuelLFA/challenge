@@ -5,21 +5,27 @@ import UtilsMocks from '../mocks/UtilsMock';
 import RecipeMocks from '../mocks/RecipeMock';
 
 describe('Recipes Controller', () => {
-  const listOfRecipes = RecipeMocks.recipes;
+  const recipes = RecipeMocks.recipes;
+  const keywords = ['orlic', 'onion'];
+  const expectedResp = {
+    keywords,
+    recipes
+  }
 
   const recipesController = new RecipesController();
-  const res = UtilsMocks.mockResponse(listOfRecipes);
+  const res = UtilsMocks.mockResponse();
 
-  test('it should list recipes', async () => {
+  test('it should return a list of recipes', async () => {
     const req: any = {
       query: {
-        i: 'orlic,onion'
+        i: keywords.join(',')
       }
     };
 
     await recipesController.index(req as Request, res as Response)
 
     expect(res.json).toHaveBeenCalled();
-    expect(res.json).toReturnWith(listOfRecipes);
+    expect(res.json).toHaveBeenCalledWith(expectedResp);
+    expect(res.status).toHaveBeenCalledWith(200);
   });
 });

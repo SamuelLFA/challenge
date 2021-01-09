@@ -1,94 +1,108 @@
 # Delivery Much Tech Challenge
 
-Bem vindo(a)! Esse é o Delivery Much Tech Challenge.
+This project was developed in order to solve the proposed problem Delivery Much Tech Challenge.</br>
+The project goal is develop an API which receives a set of ingredients and returns a list
+of recipes.
+Two publics APIs was used in this problem:
+- [RecipePuppy]
+- [Giphy]
 
-Aqui você terá todas as informações para realizar o seu desafio.
-
-O tempo sugerido para conclusão do desafio é de três dias, mas não é uma regra. Estamos mais interessados em observar a qualidade da solução do que o tempo.
-
-Quando sua solução estiver pronta, envie um e-mail para `tech.challenge@deliverymuch.com.br` com o link do seu repositório no Github. Seu código será analisado pelo nosso time de engenheiros. Após a análise, enviaremos o feedback e as instruções dos próximos passos!
-
-Bom desafio!
-
-## O Desafio
-
-Você deve construir uma API que recebe ingredientes como parâmetro de entrada em uma chamada GET e retorna uma lista de receitas.
-Utilize as APIs públicas da RecipePuppy (http://www.recipepuppy.com/about/api/) e da Giphy (https://developers.giphy.com/docs/) para obter os dados necessários.
-
-A API deve receber como parâmetro um conjunto de ingredientes (máximo 3) e deve retornar os itens utilizados para realizar a busca; e uma lista de receitas.
-
-Cada item lista de receitas deve possuir 4 atributos:
-- Título da receitam;
-- Lista de ingredientes;
-- Link para acessar a receita;
-- Link de um gif para a receita.
+# Requisites
+- [Node.js]
+- [Docker]
 
 
-#### A Estrutura
+# Running
+## Giphy API
+- Navigate to `https://developers.giphy.com/docs/sdk`.
+- Click on `Create an App` button to get a key.
+- Create an account if you haven't and then copy the key.
 
-A API possui apenas um endpoint, que deve respeitar a seguinte chamada:
+## Project
+- Clone the repository using:
+```
+	git clone https://github.com/SamuelLFA/challenge
+```
+- Open `.env` file on the root of the project. Insert the key at `GIPHY_API_KEY`.
+- Install all dependecies using:
+```
+	npm install
+```
 
-`http://{HOST}/recipes/?i={ingredient_1},{ingredient_2}`
+## Tests
+- To run the tests, execute in terminal of the project root:
+```
+	npm test
+```
 
-Exemplo:
+## Development
+- To run the development environment, execute in terminal of the project root:
+```
+	npm run dev
+```
+### url: `http://{HOST}/recipes/?i={ingredient_1},{ingredient_2}`
+### example: `localhost:3333/recipes?i=hot sauce,onions,garlic`
 
-`http://127.0.0.1/recipes/?i=onion,tomato`
+## Docker
+- To create the Docker image, you can run:
+```
+	docker build -t challenge .
+```
+- After the build you can run the container image with the command:
+```
+	docker run -dp 3333:3333 challenge
+```
+### url: `http://{HOST}/recipes/?i={ingredient_1},{ingredient_2}`
+### example: `localhost:3333/recipes?i=hot sauce,onions,garlic`
 
-
-A resposta dessa requisição deve seguir a seguinte estrutura:
+## Reponse example
 
 ```
 {
-	"keywords": ["onion", "tomato"],
-	"recipes": [{
-		"title": "Greek Omelet with Feta",
-		"ingredients": ["eggs", "feta cheese", "garlic", "red onions", "spinach", "tomato", "water"],
-		"link": "http://www.kraftfoods.com/kf/recipes/greek-omelet-feta-104508.aspx",
-		"gif": "https://media.giphy.com/media/xBRhcST67lI2c/giphy.gif"
-	   },{
-		"title": "Guacamole Dip Recipe",
-		"ingredients": ["avocado", "onions", "tomato"],
-		"link":"http://cookeatshare.com/recipes/guacamole-dip-2783",
-		"gif":"https://media.giphy.com/media/I3eVhMpz8hns4/giphy.gif"
-	   }
-	]
+    "keywords": [
+        "hot sauce",
+        "onions",
+        "garlic"
+    ],
+    "recipes": [
+        {
+            "title": "Roasted Garlic Grilling Sauce \r\n\t\t\r\n\t\r\n\t\t\r\n\t\r\n\t\t\r\n\t\r\n\t\r\n\r\n",
+            "ingredients": "garlic, onions, hot sauce",
+            "link": "http://www.kraftfoods.com/kf/recipes/roasted-garlic-grilling-sauce-56344.aspx",
+            "gif": "https://media4.giphy.com/media/Q4PcMC8apFXBm/giphy.gif?cid=889d04596800psalzcue87xr9z4415300b25h7kq7vjaitc9&rid=giphy.gif"
+        },
+        {
+            "title": "Steak House Grilled Sirloin \r\n\t\t\n",
+            "ingredients": "garlic, onions, hot sauce, beef",
+            "link": "http://www.kraftfoods.com/kf/recipes/steak-house-grilled-sirloin-56345.aspx",
+            "gif": "https://media0.giphy.com/media/rH0Rvox4pCpTG/giphy.gif?cid=889d0459z4nd1rbknz9h0qykazcl55j90u9ciezr9es3qcjj&rid=giphy.gif"
+        },
+        {
+            "title": "Steak House Grilled Sirloin \r\n\t\t\n",
+            "ingredients": "garlic, onions, hot sauce, beef",
+            "link": "http://www.kraftfoods.com/kf/recipes/steak-house-grilled-sirloin-56345.aspx?cm_re=1-_-1-_-RecipeAlsoEnjoy",
+            "gif": "https://media0.giphy.com/media/rH0Rvox4pCpTG/giphy.gif?cid=889d0459z4nd1rbknz9h0qykazcl55j90u9ciezr9es3qcjj&rid=giphy.gif"
+        },
+        {
+            "title": "Stuffed Dill Pickles",
+            "ingredients": "cream cheese, dill pickle, garlic, onions, hot sauce",
+            "link": "http://www.recipezaar.com/Stuffed-Dill-Pickles-100688",
+            "gif": "https://media2.giphy.com/media/2nTWV9aDiJbFe/giphy.gif?cid=889d04592scweadgq01ln8uz3nw0w41a99e9f9521qhdenc1&rid=giphy.gif"
+        }
+    ]
 }
 ```
 
-### Requisitos
+# Collection
+## Import the [Collection] (https://www.getpostman.com/collections/dbb153f9524ce0fb5e7d) from [Postman] to make an example request to API.
 
-- Utilizar NodeJS ou Go para criar a aplicação;
-- Toda configuração e chaves de acesso (se necessário) devem ser acessadas em um arquivo de ambiente. Sua configuração deve estar documentada no README;
-- Para obter o gif no Giphy, utilize o título da receita recebido pelo RecipePuppy;
-- Os ingredientes recebidos pelo RecipePuppy são recebidos em String. Organize os ingredientes em um array e ordene esse array por ordem alfabética;
-- Se algum dos serviços externos estiver indisponível o projeto deverá informar o usuário dessa indisponibilidade;
-- Utilizar Docker para executar o projeto;
+# Contact
+samuellfa3@gmail.com
 
-
-# Critérios de Avaliação
-
-### Entrega
-- O projeto está completo para ser executado?
-- O projeto atende ao que se propõe fazer?
-- Todos requisitos foram atendidos?
-
-### Boas Práticas
-- O código está de acordo com o guia de estilo do NodeJS / Go?
-- O código está bem estruturado?
-- O código está fluente na linguagem?
-- O código faz o uso correto de Design Patterns?
-
-### Documentação
-- O código foi entregue com um arquivo de README claro de como se guiar?
-- A documentação foi suficiente para executar o projeto?
-- Os commits são pequenos e consistentes?
-- As mensagens de commit são claras?
-
-### Código Limpo
-- O código possibilita expansão para novas funcionalidades?
-- O código é Don't Repeat Yourself?
-- O código é fácil de compreender?
-
-### Controle de Qualidade
-- O código possui configuração de lint?
-- O código possui testes unitários?
+### Thank you and best regards 👨‍💻
+[Docker]: <https://docs.docker.com/desktop/>
+[Node.js]: <https://nodejs.org/en/>
+[Postman]: <https://www.postman.com/>
+[RecipePuppy]: <http://www.recipepuppy.com/about/api/>
+[Giphy]: <https://developers.giphy.com/docs/>
+[Collection]: <https://www.getpostman.com/collections/dbb153f9524ce0fb5e7d>

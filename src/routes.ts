@@ -1,13 +1,16 @@
 import { Router } from 'express';
+import axios from 'axios';
 
 import QueryValidator from './middlewares/QueryValidator';
 
-import RecipeController from './controllers/RecipesController';
+import RecipesController from './controllers/RecipesController';
+import RecipesService from './services/RecipesService';
 
 const routes = Router();
 
-const recipeController = new RecipeController();
+const httpService = new RecipesService(axios);
+const recipesController = new RecipesController(httpService);
 
-routes.get('/recipes', QueryValidator, recipeController.index.bind(recipeController));
+routes.get('/recipes', QueryValidator, recipesController.index.bind(recipesController));
 
 export default routes;

@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
+import { AxiosInstance } from 'axios';
 
 import RecipesController from '../../src/controllers/RecipesController';
 import UtilsMocks from '../mocks/UtilsMock';
 import RecipeMocks from '../mocks/RecipeMock';
+import RecipesServiceMock from '../mocks/RecipesServiceMock';
 
 describe('Recipes Controller', () => {
   const recipes = RecipeMocks.recipes;
@@ -12,7 +14,9 @@ describe('Recipes Controller', () => {
     recipes
   }
 
-  const recipesController = new RecipesController();
+  const httpMock = UtilsMocks.httpMock(recipes);
+  const recipesServiceMock = new RecipesServiceMock(httpMock as AxiosInstance);
+  const recipesController = new RecipesController(recipesServiceMock);
   const res = UtilsMocks.mockResponse();
 
   test('it should return a list of recipes', async () => {

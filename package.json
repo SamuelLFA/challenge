@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsnd --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts",
-    "test": "jest"
+    "test": "jest --setupFiles dotenv/config"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +24,8 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
+    "env-var": "^7.0.0",
     "express": "^4.17.1",
     "joi": "^17.3.0"
   }

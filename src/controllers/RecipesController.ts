@@ -1,28 +1,34 @@
 import { Request, Response } from 'express';
 
-import Recipe from '../models/Recipe';
-
+import RecipesService from '../services/RecipesService';
 export default class RecipeController {
-  private recipes: Array<Recipe>;
+  private recipeService: RecipesService;
+
+  constructor(recipeService: RecipesService) {
+    this.recipeService = recipeService;
+  }
 
   async index(request: Request, response: Response) {
     const { i: ingredients } = request.query;
 
-    const listOfIngredients = (ingredients as string)?.split(',');
+    const normalizeInput = (ingredients as string)
+      ?.split(',')
+      .map(ingredient => ingredient.trim())
+      .filter(ingredient => ingredient.length);
 
-    this.recipes = [
-      {
-        "title": "Vegetable-Pasta Oven Omelet",
-        "link": "http://find.myrecipes.com/recipes/recipefinder.dyn?action=displayRecipe&recipe_id=520763",
-        "ingredients": "tomato, onions",
-        "gif": "http://img.recipepuppy.com/560556.jpg"
-      },
-    ];
+    const listOfIngredients = normalizeInput;
+
+    const listOfRecipes = await this.recipeService.getRecipes(listOfIngredients);
+
+    if (!listOfRecipes) {
+      response.status(400).json({ error: true });
+      return;
+    }
 
     response.status(200).json(
       {
         keywords: listOfIngredients,
-        recipes: this.recipes
+        recipes: listOfRecipes
       }
     );
   }

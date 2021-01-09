@@ -40,8 +40,8 @@ Two publics APIs was used in this problem:
 ```
 	npm run dev
 ```
-### url: `http://{HOST}/recipes/?i={ingredient_1},{ingredient_2}`
-### example: `localhost:3333/recipes?i=hot sauce,onions,garlic`
+### endpoint: http://{HOST}/recipes/?i={ingredient_1},{ingredient_2}
+### example: localhost:3333/recipes?i=hot sauce,onions,garlic
 
 ## Docker
 - To create the Docker image, you can run:
@@ -52,8 +52,8 @@ Two publics APIs was used in this problem:
 ```
 	docker run -dp 3333:3333 challenge
 ```
-### url: `http://{HOST}/recipes/?i={ingredient_1},{ingredient_2}`
-### example: `localhost:3333/recipes?i=hot sauce,onions,garlic`
+### endpoint: http://{HOST}/recipes/?i={ingredient_1},{ingredient_2}
+### example: localhost:3333/recipes?i=hot sauce,onions,garlic
 
 ## Reponse example
 
